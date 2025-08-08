@@ -32,12 +32,14 @@ public class AccountService {
 		return accountRepository.findByNumberAccountAndDocument(account, document);
 	}
 
+	@Transactional
 	public UUID createAccount(String name, String document) {
 		Account acc = new Account(name, document);
 		acc = accountRepository.saveAndFlush(acc);
 		return acc.getNumberAccount();
 	}
 
+	@Transactional
 	public Account addCredits(Long id, BigDecimal value) {
 		Account acc = accountRepository.findById(id).get();
 		acc.credit(value);
@@ -47,6 +49,7 @@ public class AccountService {
 		return acc;
 	}
 
+	@Transactional
 	public Account addDebits(Long id, BigDecimal value) {
 		Account acc = accountRepository.findById(id).get();
 		acc.debit(value);
