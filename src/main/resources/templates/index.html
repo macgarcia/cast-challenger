@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Logon</title>
+	<link rel="stylesheet" href="/css/index.css"/>	
+</head>
+<body>
+	<div class="login-container">
+	    <form action="/login" method="get"> <!-- ou method="post" -->
+	        <label for="document">Document:</label>
+	        <input type="text" id="document" name="document" required ><br><br>
+	
+	        <label for="account">Account:</label>
+	        <input type="account" id="account" name="account" required
+				pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}"
+			    title="Informe um UUID válido no formato XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"><br><br>
+	
+	        <button type="submit">Send</button>
+			
+			<div th:if="${error}" class="alert alert-error" th:text="${error}"></div>
+			<!--<div th:if="${success}" class="alert alert-success" th:text="${success}"></div>-->
+	    </form>
+	</div>
+</body>
+</html>

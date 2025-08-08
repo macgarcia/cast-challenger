@@ -1,0 +1,201 @@
+/* GERAL */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+/* ============ LOGIN PAGE ============ */
+.login-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container {
+    background-color: white;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    width: 300px;
+}
+
+.form-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-container label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-container input {
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-container button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.form-container button:hover {
+    background-color: #0056b3;
+}
+
+/* Mensagens de erro/sucesso */
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    animation: fadeOut 10s forwards;
+}
+
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; display: none; }
+}
+
+
+/* ============ OPERATIONS PAGE ============ */
+.operations-container {
+    padding: 20px 40px;
+}
+
+/* Detalhes da conta */
+.account-details {
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 2rem;
+    background-color: rgb(165, 29, 45);
+    color: white;
+}
+
+.account-details p {
+    margin: 0;
+}
+
+/* Seções das listas */
+.lists-container {
+    display: flex;
+    gap: 2rem;
+}
+
+.list-box {
+    flex: 1;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.list-box h2 {
+    margin-top: 0;
+}
+
+.list-box li {
+    list-style-type: none;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px dashed #ddd;
+}
+
+/* Créditos em azul */
+.credit-section {
+    border: 2px solid #007BFF;
+    color: #007BFF;
+}
+
+.credit-section h2,
+.credit-section p,
+.credit-section span,
+.credit-section strong {
+    color: #007BFF;
+}
+
+/* Débitos em vermelho */
+.debit-section {
+    border: 2px solid #DC3545;
+    color: #DC3545;
+}
+
+.debit-section h2,
+.debit-section p,
+.debit-section span,
+.debit-section strong {
+    color: #DC3545;
+}
+
+/* Transferências em verde */
+.transfer-section {
+    border: 2px solid #28A745;
+    color: #28A745;
+}
+
+.transfer-section h2,
+.transfer-section p,
+.transfer-section span,
+.transfer-section strong {
+    color: #28A745;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+}
