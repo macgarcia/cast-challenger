@@ -69,7 +69,7 @@ public class AccountController {
 	public String addDebits(@RequestParam Long id, @RequestParam BigDecimal value, Model model) {
 		Account acc = service.findById(id);
 		try {
-			acc = service.addDebits(id, value);
+			acc = service.addDebits(acc.getNumberAccount(), value);
 			return "redirect:/operations?document=" + acc.getDocument() + "&account=" + acc.getNumberAccount();
 		} catch (AccountException ex) {
 			model.addAttribute("acc", acc);

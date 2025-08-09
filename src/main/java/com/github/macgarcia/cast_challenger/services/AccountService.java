@@ -50,8 +50,8 @@ public class AccountService {
 	}
 
 	@Transactional
-	public Account addDebits(Long id, BigDecimal value) {
-		Account acc = accountRepository.findById(id).get();
+	public Account addDebits(UUID numberAccount, BigDecimal value) {
+		Account acc = accountRepository.findByNumberAccount(numberAccount);
 		acc.debit(value);
 		accountRepository.saveAndFlush(acc);
 		Operation operation = new Operation(acc, OperationType.DEBIT, value);
