@@ -2,21 +2,24 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Register</title>
-	<link rel="stylesheet" href="/css/index.css"/>
+    <link rel="stylesheet" href="/css/index.css"/>
 </head>
 <body>
-	<div class="login-container">
-	    <form action="/create" method="get"> <!-- ou method="post" -->
-	        <label for="name">Name:</label>
-	        <input type="text" id="name" name="name" required ><br><br>
-	
-	        <label for="document">Document:</label>
-	        <input type="document" id="document" name="document" required<br><br><br>
-	
-	        <button type="submit">Send</button>
-			
-			<div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
-	    </form>
-	</div>div>
+    <div class="login-container">
+        <div class="form-container">
+            <h1>Register</h1>
+            <form action="/create" method="get">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required >
+
+                <label for="document">Document:</label>
+                <input type="text" id="document" name="document" required>
+
+                <button type="submit">Send</button>
+
+                <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

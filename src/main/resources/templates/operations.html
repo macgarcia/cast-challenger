@@ -2,121 +2,119 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Account details</title>
-	<!--<link rel="stylesheet" href="/css/operations.css"/>	-->
-	<link rel="stylesheet" href="/css/index.css"/>	
+    <link rel="stylesheet" href="/css/index.css"/>    
 </head>
 
 <body>
-	<div class="operations-container">
-	    <h1>Account details</h1>
-	
-	    <p><strong>Name:</strong> <span th:text="${acc.name}">Name</span></p>
-	    <p><strong>Number account:</strong> <span th:text="${acc.numberAccount}">Number account</span></p>
-	    <p><strong>Balance:</strong> <span th:text="${acc.balance}">Balance</span></p>
-	
-	    <hr>
-	
-		<h2>Credits</h2>
-		<button onclick="openModal()">Add Credit</button>
-		<ul>
-		    <li th:each="credit : ${acc.getCredits()}" class="credits-info">
-				<p><strong>Date:</strong> <span th:text="${credit.date}">Date</span></p>
-		        <p><strong>Value:</strong> <span th:text="${credit.value}">Value</span></p>
-		    </li>
-		</ul>
-		
-		<h2>Debits</h2>
-		<button onclick="openDebitModal()">Add Debit</button>
-		<ul>
-		    <li th:each="debit : ${acc.getDebits()}">
-				<p><strong>Date:</strong> <span th:text="${debit.date}">Date</span></p>
-		        <p><strong>Value:</strong> <span th:text="${debit.value}">Value</span></p>
-		    </li>
-		</ul>
-		
-		<h2>Transfers</h2>
-		<button onclick="openTransferModal()">Add Transfer</button>
-		<ul>
-		    <li th:each="transfer : ${acc.getTransfers()}">
-				<p><strong>Date:</strong> <span th:text="${transfer.date}">Date</span></p>
-		        <p><strong>Value:</strong> <span th:text="${transfer.value}">Value</span></p>
-				<p><strong>To:</strong> <span th:text="${transfer.slave.name}">To</span></p>
-		    </li>
-		</ul>
-	
-		<div id="creditModal" class="modal" style="display: none;">
-		    <div class="modal-content">
-		        <span class="close" onclick="closeModal()">&times;</span>
-		        <h2>New Credit</h2>
-		        <form th:action="@{/credits/add}" method="post">
-		            <input type="hidden" name="id" th:value="${acc.id}" />
-		            <label>Value:</label><br>
-		            <input type="number" name="value" step="0.01" min="0.00" required><br><br>
-		            <button type="submit">Save</button>
-		        </form>
-		    </div>
-		</div>
-		
-		<div id="debitModal" class="modal" style="display: none;">
-		    <div class="modal-content">
-		        <span class="close" onclick="closeDebitModal()">&times;</span>
-		        <h2>New Debit</h2>
-		        <form th:action="@{/debits/add}" method="post">
-		            <input type="hidden" name="id" th:value="${acc.id}" />
-		            <label>Value:</label><br>
-		            <input type="number" name="value" step="0.01" min="0.00" required><br><br>
-		            <button type="submit">Save</button>
-		        </form>
-		    </div>
-		</div>
-		
-		<div id="transferModal" class="modal" style="display: none;">
-		    <div class="modal-content">
-		        <span class="close" onclick="closeTransferModal()">&times;</span>
-		        <h2>New Transfer</h2>
+    <div class="operations-container">
+        <!-- Dados da conta -->
+        <div class="account-details">
+            <p><strong>Name:</strong> <span th:text="${acc.name}">Name</span></p>
+            <p><strong>Number account:</strong> <span th:text="${acc.numberAccount}">Number account</span></p>
+            <p><strong>Balance:</strong> <span th:text="${acc.balance}">Balance</span></p>
+        </div>
 
-		        <form th:action="@{/transfers/add}" method="post">
-		            <input type="hidden" name="id" th:value="${acc.id}" />
+        <!-- Listas lado a lado -->
+        <div class="lists-container">
+            
+            <!-- Créditos -->
+            <div class="list-box credit-section">
+                <h2>Credits</h2>
+                <button onclick="openModal()">Add Credit</button>
+                <ul>
+                    <li th:each="credit : ${acc.getCredits()}">
+                        <p><strong>Date:</strong> <span th:text="${credit.date}">Date</span></p>
+                        <p><strong>Value:</strong> <span th:text="${credit.value}">Value</span></p>
+                    </li>
+                </ul>
+            </div>
 
-		            <label>Value:</label><br>
-		            <input type="number" name="value" step="0.01" min="0.01" required><br><br>
+            <!-- Débitos -->
+            <div class="list-box debit-section">
+                <h2>Debits</h2>
+                <button onclick="openDebitModal()">Add Debit</button>
+                <ul>
+                    <li th:each="debit : ${acc.getDebits()}">
+                        <p><strong>Date:</strong> <span th:text="${debit.date}">Date</span></p>
+                        <p><strong>Value:</strong> <span th:text="${debit.value}">Value</span></p>
+                    </li>
+                </ul>
+            </div>
 
-		            <label>Destination Account Number:</label><br>
-		            <input type="text" name="numberAccount" required 
-						pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}"
-						title="Informe um UUID válido no formato XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"><br><br>
+            <!-- Transferências -->
+            <div class="list-box transfer-section">
+                <h2>Transfers</h2>
+                <button onclick="openTransferModal()">Add Transfer</button>
+                <ul>
+                    <li th:each="transfer : ${acc.getTransfers()}">
+                        <p><strong>Date:</strong> <span th:text="${transfer.date}">Date</span></p>
+                        <p><strong>Value:</strong> <span th:text="${transfer.value}">Value</span></p>
+                        <p><strong>To:</strong> <span th:text="${transfer.slave.name}">To</span></p>
+                    </li>
+                </ul>
+            </div>
+        </div>
 
-		            <button type="submit">Save</button>
-		        </form>
-		    </div>
-		</div>
-		
-		<script>
-			function openModal() {
-			    document.getElementById("creditModal").style.display = "flex";
-			}
+        <!-- Modais -->
+        <div id="creditModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>New Credit</h2>
+                <form th:action="@{/credits/add}" method="post">
+                    <input type="hidden" name="id" th:value="${acc.id}" />
+                    <label>Value:</label><br>
+                    <input type="number" name="value" step="0.01" min="0.00" required><br><br>
+                    <button type="submit">Save</button>
+                </form>
+            </div>
+        </div>
+        
+        <div id="debitModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close" onclick="closeDebitModal()">&times;</span>
+                <h2>New Debit</h2>
+                <form th:action="@{/debits/add}" method="post">
+                    <input type="hidden" name="id" th:value="${acc.id}" />
+                    <label>Value:</label><br>
+                    <input type="number" name="value" step="0.01" min="0.00" required><br><br>
+                    <button type="submit">Save</button>
+                </form>
+            </div>
+        </div>
+        
+        <div id="transferModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close" onclick="closeTransferModal()">&times;</span>
+                <h2>New Transfer</h2>
+                <form th:action="@{/transfers/add}" method="post">
+                    <input type="hidden" name="id" th:value="${acc.id}" />
 
-			function closeModal() {
-			    document.getElementById("creditModal").style.display = "none";
-			}
+                    <label>Value:</label><br>
+                    <input type="number" name="value" step="0.01" min="0.01" required><br><br>
 
-			function openDebitModal() {
-			    document.getElementById("debitModal").style.display = "flex";
-			}
+                    <label>Destination Account Number:</label><br>
+                    <input type="text" name="numberAccount" required 
+                        pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}"
+                        title="Informe um UUID válido no formato XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"><br><br>
 
-			function closeDebitModal() {
-			    document.getElementById("debitModal").style.display = "none";
-			}
-			
-			function openTransferModal() {
-			    document.getElementById("transferModal").style.display = "flex";
-			}
+                    <button type="submit">Save</button>
+                </form>
+            </div>
+        </div>
 
-			function closeTransferModal() {
-			    document.getElementById("transferModal").style.display = "none";
-			}
-		</script>
-		<div th:if="${error}" class="alert alert-error" th:text="${error}"></div>
-	</div>
+        <!-- Scripts -->
+        <script>
+            function openModal() { document.getElementById("creditModal").style.display = "flex"; }
+            function closeModal() { document.getElementById("creditModal").style.display = "none"; }
+
+            function openDebitModal() { document.getElementById("debitModal").style.display = "flex"; }
+            function closeDebitModal() { document.getElementById("debitModal").style.display = "none"; }
+            
+            function openTransferModal() { document.getElementById("transferModal").style.display = "flex"; }
+            function closeTransferModal() { document.getElementById("transferModal").style.display = "none"; }
+        </script>
+
+        <div th:if="${error}" class="alert alert-error" th:text="${error}"></div>
+    </div>
 </body>
 </html>
