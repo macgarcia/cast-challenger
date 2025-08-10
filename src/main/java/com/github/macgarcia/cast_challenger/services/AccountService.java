@@ -12,8 +12,10 @@ import com.github.macgarcia.cast_challenger.repositories.AccountRepository;
 import com.github.macgarcia.cast_challenger.repositories.OperationRepository;
 
 import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
+@Slf4j
 public class AccountService {
 
 	private final AccountRepository accountRepository;
@@ -34,6 +36,7 @@ public class AccountService {
 
 	@Transactional
 	public UUID createAccount(String name, String document) {
+		log.info("Creating account");
 		Account acc = new Account(name, document);
 		acc = accountRepository.saveAndFlush(acc);
 		return acc.getNumberAccount();
@@ -41,6 +44,7 @@ public class AccountService {
 
 	@Transactional
 	public Account addCredits(Long id, BigDecimal value) {
+		log.info("Addicting credits");
 		Account acc = accountRepository.findById(id).get();
 		acc.credit(value);
 		accountRepository.saveAndFlush(acc);
@@ -51,6 +55,7 @@ public class AccountService {
 
 	@Transactional
 	public Account addDebits(UUID numberAccount, BigDecimal value) {
+		log.info("Addicting debits");
 		Account acc = accountRepository.findByNumberAccount(numberAccount);
 		acc.debit(value);
 		accountRepository.saveAndFlush(acc);
@@ -61,6 +66,7 @@ public class AccountService {
 
 	@Transactional
 	public void addTransfer(UUID masterNumberAccount, String slaveNumberAccount, BigDecimal value) {
+		log.info("Addicting tranfesr");
 		Account master = accountRepository.findByNumberAccount(masterNumberAccount);
 		Account slave = accountRepository.findByNumberAccount(UUID.fromString(slaveNumberAccount));
 		master.transfer(slave, value);

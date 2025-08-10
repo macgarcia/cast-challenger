@@ -84,6 +84,12 @@ public class Account implements Serializable {
 	}
 
 	public void transfer(Account acc, BigDecimal value) {
+		if (Objects.isNull(acc)) {
+			throw new AccountException(Messages.ACCOUNT_NOT_FOUND);
+		}
+		if (Objects.equals(acc.getNumberAccount(), this.numberAccount)) {
+			throw new AccountException(Messages.NO_PERMITED_THIS_OPERATION);
+		}
 		this.validValue(value);
 		if (this.balance.compareTo(value) >= 0) {
 			this.debit(value);

@@ -12,5 +12,6 @@ public class Messages {
 
 	public static final String ACCOUNT_NOT_FOUND = "Account not found.";
 	public static final String INVALID_OPERATION_TYPE = "Invalid operation type.";
+	public static final String NO_PERMITED_THIS_OPERATION = "Transfer invalid.";
 
 }
