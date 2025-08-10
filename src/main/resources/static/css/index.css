@@ -207,3 +207,89 @@ body {
 .transfer-section button:hover {
     background-color: #1c7c31;
 }
+
+/* Formulário dentro dos modais */
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-content label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.modal-content input {
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Botão do modal no padrão azul */
+.modal-content button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal-content button:hover {
+    background-color: #0056b3;
+}
+
+/* ----- RESPONSIVIDADE ----- */
+@media (max-width: 768px) {
+    /* Formulários ocupam quase toda a largura no mobile */
+    .form-container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    /* Layout das listas na tela de operações fica empilhado */
+    .lists-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .list-box {
+        width: 100%;
+    }
+
+    /* Botões e inputs largura total no mobile */
+    form input,
+    form select,
+    form button {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Modais ocupam a maior parte da tela no celular */
+    .modal-content {
+        width: 95%;
+        padding: 15px;
+    }
+
+    /* Ajuste de título no modal no mobile */
+    .modal-content h2 {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+}
+
+/* Títulos coloridos nos modais */
+#creditModal h2 {
+    color: #007bff; /* Azul - Créditos */
+}
+
+#debitModal h2 {
+    color: #dc3545; /* Vermelho - Débitos */
+}
+
+#transferModal h2 {
+    color: #28a745; /* Verde - Transferências */
+}
